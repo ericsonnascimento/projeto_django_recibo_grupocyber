@@ -1,6 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from . import forms
 
-# Create your views here.
+def client_register(request):
+    form = forms.ClientRegisterForms
+    if request.method == 'POST':
+        form = forms.ClientRegisterForms(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
 
-def clients(request):
-    return render(request, 'clients/clients.html')
+    return render(request, 'clients/client_register.html', {'form': form})
