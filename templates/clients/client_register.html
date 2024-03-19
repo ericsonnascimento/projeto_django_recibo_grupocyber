@@ -7,9 +7,10 @@
                 <form action="{% url 'client_register' %}" method="POST">
                     {% csrf_token %}
                     <div class="row position-absolute top-50 start-50 translate-middle">
+                        <h5 class="text-center mb-3">CADASTRO DE CLIENTE</h5>
                         {% for field in form %}
                         <div class="col-12 col-lg-12" style="margin-bottom: 10px;">
-                            <label for="{{ field.id_for_label }}" style="color:#a5a3a3; margin-bottom: 5px;">{{ field.label }}</label>
+                            <label style="color:#a5a3a3; margin-bottom: 5px;">{{ field.label }}</label>
                             {{ field }}
                         </div>
                         {% for error in field.errors %}
