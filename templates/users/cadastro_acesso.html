@@ -3,7 +3,22 @@
 
 {% block content %}
 
-    <h1>Ambiente web página Usuário</h1>
-    <p>Testando funcionalidades das URLS e Views</p>
+    <section class="container">
+        <form action="{% url 'cadastro_acesso' %}" method="POST">
+            {% csrf_token %}
+            <div class="row position-absolute top-50 start-50 translate-middle">
+                <h5 class="text-center mb-3">CADASTRO DE USUÁRIO</h5>
+                {% for field in form %}
+                <div class="col-12 col-lg-12" style="margin-bottom: 10px;">
+                    <label style="color:#a5a3a3; margin-bottom: 5px;">{{ field.label }}</label>
+                    {{ field }}
+                </div>
+                {% endfor %}
+                <div>
+                    <button class="btn btn-success col-2 mt-3" type="submit">Cadastrar</button>
+                </div>
+            </div>
+        </form>
+    </section>
 
 {% endblock %}

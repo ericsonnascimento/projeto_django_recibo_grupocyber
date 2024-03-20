@@ -25,7 +25,28 @@ def login(request):
     return render(request, 'users/login.html', {'form': form})
 
 def cadastro_acesso(request):
-    return render(request, 'users/cadastro_acesso.html')
+    form = forms.UserRegistrationForm()
+
+    if request.method == 'POST':
+        form = forms.UserRegistrationForm(request.POST)
+
+        if form.is_valid():
+            name_registration = form['name_registration'].value()
+            login_registration = form['login_registration'].value()
+            password_registration = form['password'].value()
+
+        if User.objects.filter(username=name_registration).exists():
+            return redirect('cadastro_acesso')
+
+        user = User.objects.create_user(
+            username=login_registration,
+            first_name=name_registration,
+            password=password_registration
+        )
+        user.save()
+        return redirect('index')
+
+    return render(request, 'users/cadastro_acesso.html', {'form': form})
 
 def logout(request):
     return render(request, 'users/logout.html')
