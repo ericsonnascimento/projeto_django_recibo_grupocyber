@@ -25,6 +25,9 @@ def login(request):
     return render(request, 'users/login.html', {'form': form})
 
 def cadastro_acesso(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+
     form = forms.UserRegistrationForm()
 
     if request.method == 'POST':
@@ -49,4 +52,5 @@ def cadastro_acesso(request):
     return render(request, 'users/cadastro_acesso.html', {'form': form})
 
 def logout(request):
-    return render(request, 'users/logout.html')
+    auth.logout(request)
+    return redirect('login')

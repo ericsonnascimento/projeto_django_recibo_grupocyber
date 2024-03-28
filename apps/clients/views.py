@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from . import forms
 
 def client_register(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    
     form = forms.ClientRegisterForms
     if request.method == 'POST':
         form = forms.ClientRegisterForms(request.POST)
