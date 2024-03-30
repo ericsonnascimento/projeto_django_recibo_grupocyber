@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+from django.contrib.messages import constants as messages
 
 load_dotenv()
 
@@ -61,6 +62,13 @@ TEMPLATES = [
         },
     },
 ]
+
+
+# Conjunto de mensagens para o frontend
+MESSAGE_TAGS = {
+   messages.ERROR: 'danger',
+   messages.SUCCESS: 'success',
+}
 
 WSGI_APPLICATION = 'setup.wsgi.application'
 

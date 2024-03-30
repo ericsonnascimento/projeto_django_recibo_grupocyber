@@ -7,6 +7,13 @@
     <title>Grupocyber</title>
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 </head>
+{% if messages %}
+   {% for message in messages %}
+       <div class="alert alert-{{message.tags}}" role="alert">
+           <p class="container mb-1">{{message}}</p>
+       </div>
+   {% endfor %}
+{% endif %}
 <body>
     <section class="container">
         <form action="{% url 'login' %}" method="POST">

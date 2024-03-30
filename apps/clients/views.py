@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from . import forms
 
 def client_register(request):
@@ -10,6 +11,7 @@ def client_register(request):
         form = forms.ClientRegisterForms(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Cliente cadastrado com sucesso!')
             return redirect('login')
 
     return render(request, 'clients/client_register.html', {'form': form})
