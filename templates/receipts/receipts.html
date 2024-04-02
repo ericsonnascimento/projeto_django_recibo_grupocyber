@@ -3,23 +3,22 @@
 
 {% block content %}
 
-    <section class="container" style="margin-left: 5em">
-        <form action="{% url 'receipts' %}" method="POST">
-            {% csrf_token %}
-            <div class="row position-absolute top-50 start-50 translate-middle">
-                <h5 class="text-center mb-3">CADASTRAR RECIBO</h5>
-                {% for field in form %}
-                <div>
-                    <label style="color:#a5a3a3; margin-bottom: 5px;">{{ field.label }}</label>
-                    {{ field }}
-                </div>
-                {% endfor %}
-                <div>
-                    <button class="btn btn-success col-2 mt-3" type="submit">Salva</button>
-                </div>
+<section class="container">
+    <form action="{% url 'receipts' %}" method="POST" class="position-absolute top-50 start-50 translate-middle">
+        {% csrf_token %}
+        <h5 class="text-center mb-3">CADASTRAR RECIBO</h5>
+        <div class="row">
+            {% for field in form %}
+            <div class="col-12 col-lg-12 mb-3">
+                <label style="color:#a5a3a3;">{{ field.label }}</label>
+                {{ field }}
             </div>
-        </form>
-    </section>
-
+            {% endfor %}
+        </div>
+        <div class="text-center">
+            <button class="btn btn-success col-6 mt-3" type="submit">Salvar</button>
+        </div>
+    </form>
+</section>
 
 {% endblock %}

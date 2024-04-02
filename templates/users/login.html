@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Grupocyber</title>
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 {% if messages %}
    {% for message in messages %}
@@ -15,23 +15,20 @@
    {% endfor %}
 {% endif %}
 <body>
-    <section class="container">
-        <form action="{% url 'login' %}" method="POST">
+    <section class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <form action="{% url 'login' %}" method="POST" class="position-relative">
             {% csrf_token %}
-            <div class="row position-absolute top-50 start-50 translate-middle">
+            <div>
                 <h5 class="text-center mb-3">LOGIN DE ACESSO</h5>
                 {% for field in form %}
-                <div class="col-12 col-lg-12" style="margin-bottom: 10px;">
-                    <label style="color:#a5a3a3; margin-bottom: 5px;">{{ field.label }}</label>
+                <div class="form-group">
+                    <label style="color:#a5a3a3;">{{ field.label }}</label>
                     {{ field }}
                 </div>
                 {% endfor %}
-            <div>
-                <button class="btn btn-success col-2" type="submit">Entrar</button>
-            </div>
+                <button class="btn btn-success" type="submit">Entrar</button>
             </div>
         </form>
     </section>
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

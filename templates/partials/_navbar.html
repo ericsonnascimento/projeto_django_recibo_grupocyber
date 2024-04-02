@@ -1,11 +1,42 @@
 {% load static %}
 
-    <header>
-        <section>
-            <nav>
-                <a href="{% url 'logout' %}">
-                    <button type="submit">Sair</button>
-                </a>
-            </nav>
-        </section>
-    </header>
+<section>
+<nav class="navbar-expand-lg navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+      <img class="mr-2" src="{% static 'image/logo/Logo-Grupo-Cyber-PNG-cortado.png' %}" width="25" height="25" class="d-inline-block align-top" alt="">GrupoCyber</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'index' %}">Dashboard<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'receipts' %}">Gerenciar Recibo</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'client_register' %}">Gerenciar Cliente</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'cadastro_acesso' %}">Gerenciar Usuário</a>
+        </li>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Filtrar" aria-label="Search">
+      </form>
+      <button class="btn btn-outline-success my-10 my-sm-0" type="submit">Buscar</button>
+      <a href="{% url 'logout' %}">
+        <button class="btn btn-outline-danger ml-2 my-10 my-sm-0" type="submit">Sair</button>
+      </a>
+    </div>
+  </nav>
+</section>

@@ -12,6 +12,6 @@ def client_register(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Cliente cadastrado com sucesso!')
-            return redirect('login')
+            return redirect('index')
 
     return render(request, 'clients/client_register.html', {'form': form})
