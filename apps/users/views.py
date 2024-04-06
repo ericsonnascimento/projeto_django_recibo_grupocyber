@@ -48,10 +48,6 @@ def cadastro_acesso(request):
                 messages.error(request, f'Usuário "{login_registration}" já existe, tente um novo usuário!')
                 return redirect('cadastro_acesso')
             
-            if password_registration != password_repeat:
-                messages.error(request, 'Campo "Senha" diferente do campo "Repita a senha"')
-                return redirect('cadastro_acesso')
-            
             user = User.objects.create_user(
                 username=login_registration,
                 first_name=name_registration,

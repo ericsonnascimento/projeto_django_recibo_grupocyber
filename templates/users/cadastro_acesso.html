@@ -3,16 +3,19 @@
 
 {% block content %}
 
-<section class="container">
+<section class="container" style="margin-left: 5em">
     <form action="{% url 'cadastro_acesso' %}" method="POST" class="position-absolute top-50 start-50 translate-middle">
         {% csrf_token %}
-        <h5 class="text-center mb-3">CADASTRO DE USUÁRIO</h5>
+        <h5 class="text-center mb-3 mt-5">CADASTRO DE USUÁRIO</h5>
         <div class="row">
             {% for field in form %}
             <div class="col-12 col-lg-12 mb-3">
                 <label style="color:#a5a3a3;">{{ field.label }}</label>
                 {{ field }}
             </div>
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger ml-3">{{ error }}</div>
             {% endfor %}
         </div>
         <div class="text-center">

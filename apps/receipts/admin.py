@@ -3,7 +3,7 @@ from . import models
 
 class ListingReceipts(admin.ModelAdmin):
     empty_value_display = "vazio" #substitui valores vazios pela string digitada
-    list_display = ('id', 'client', 'user', 'date_register',)
+    list_display = ('id', 'client', 'price', 'user', 'date_register',)
     list_display_links = ('id', 'client',)
     search_fields = ('id', 'client',)
     list_filter = ('id', 'user', 'client',)

@@ -6,7 +6,7 @@
 <section class="container" style="margin-left: 5em">
     <form action="{% url 'client_register' %}" method="POST" class="position-absolute top-50 start-50 translate-middle">
         {% csrf_token %}
-        <h5 class="text-center mb-3">CADASTRO DE CLIENTE</h5>
+        <h5 class="text-center mb-3 mt-5">CADASTRO DE CLIENTE</h5>
         <div class="row">
             {% for field in form %}
             <div class="col-12 col-lg-12 mb-3">

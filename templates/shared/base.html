@@ -6,11 +6,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Arquivos CSS do Inputmask -->
+    <link rel="stylesheet" href="{% static 'css/colormask.css' %}">
 </head>
     {% include 'partials/_alerts.html' %}
 <body>
     {% include 'partials/_navbar.html' %}
     {% block content %} {% endblock %}
+    <!-- Arquivos JavaScript do Inputmask -->
+    <script src="{% static 'js/inputmask.js' %}"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

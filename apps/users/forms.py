@@ -25,6 +25,7 @@ class LoginForms(forms.Form):
         )
     )
 
+
 class UserRegistrationForm(forms.Form):
     name_registration = forms.CharField(
         label='Nome',
@@ -73,3 +74,23 @@ class UserRegistrationForm(forms.Form):
             }
         )
     )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        login_user = cleaned_data.get('login_registration')
+        senha_1 = cleaned_data.get('password')
+        senha_2 = cleaned_data.get('password_repeat')
+
+        if login_user:
+            login_user = login_user.strip()
+            if ' ' in login_user:
+                raise forms.ValidationError('Não é permitido espaços no campo "Login"')
+
+        if len(senha_1) < 8:
+            raise forms.ValidationError('Senha deve contar pelo menos 8 caracteres')
+        
+        if senha_1 and senha_2 and senha_1 != senha_2:
+            raise forms.ValidationError('Senhas digitadas não são iguais!')
+        
+        return cleaned_data
+
