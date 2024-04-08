@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from . import models
 from . import forms
 
 def client_register(request):
@@ -15,3 +16,7 @@ def client_register(request):
             return redirect('index')
 
     return render(request, 'clients/client_register.html', {'form': form})
+
+def client_list(request):
+    clients = models.Client_Register.objects.all()
+    return render(request, 'clients/client_list.html', {'clients': clients})

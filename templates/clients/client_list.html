@@ -1,0 +1,38 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'partials/_subnavbar_clients.html' %}
+
+<section class="container">
+    <div class="row">
+        <div class="col-md-auto offset-md-1">
+            <h5 class="text-center mb-3 mt-5">LISTA DE CLIENTES</h5>
+            <table class="table table-striped table-responsive table-bordered">
+                <thead class="thead-default">
+                    <tr class="text-secondary h-6">
+                        <th>Cod Cliente</th>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>Email</th>
+                        <th colspan="2" class="text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for client in clients %}
+                    <tr>
+                        <td>{{ client.id }}</td>
+                        <td>{{ client.name }}</td>
+                        <td>{{ client.phone }}</td>
+                        <td>{{ client.email }}</td>
+                        <td><a href="#"><button type="submit" class="btn btn-primary">Editar</button></a></td>
+                        <td><a href="#"><button type="submit" class="btn btn-danger">Deletar</button></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

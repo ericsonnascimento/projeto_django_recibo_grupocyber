@@ -2,9 +2,10 @@
 {% load static %}
 
 {% block content %}
+{% include 'partials/_subnavbar_users.html' %}
 
-<section class="container" style="margin-left: 5em">
-    <form action="{% url 'cadastro_acesso' %}" method="POST" class="position-absolute top-50 start-50 translate-middle">
+<section class="container">
+    <form action="{% url 'cadastro_acesso' %}" method="POST" class="position-absolute top-50 start-50 translate-middle mr-3">
         {% csrf_token %}
         <h5 class="text-center mb-3 mt-5">CADASTRO DE USUÁRIO</h5>
         <div class="row">

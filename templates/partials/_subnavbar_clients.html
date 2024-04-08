@@ -1,0 +1,16 @@
+
+<nav class="navbar navbar-expand-lg navbar-light " style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+        <div class="d-flex">
+            <a href="{% url 'client_register' %}">
+                <button type="submit" class="btn btn-primary mr-2">Novo</button>
+            </a>           
+            <button type="submit" class="btn btn-primary mr-2">Alterar</button>
+            <button type="submit" class="btn btn-danger mr-2">Excluir</button>
+        </div>
+        <form class="d-flex ml-auto">
+            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+            <button class="btn btn-outline-success ml-2" type="submit">Buscar</button>
+        </form>
+    </div>
+</nav>

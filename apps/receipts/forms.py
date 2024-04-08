@@ -1,6 +1,6 @@
 from django import forms
 from . import models
-from django.forms.widgets import TextInput
+from django.forms.widgets import TextInput, Textarea
 from django.utils.safestring import mark_safe
 
 class PriceMaskWidget(TextInput):
@@ -37,5 +37,5 @@ class ReceiptsForms(forms.ModelForm):
         widgets = {
             'client': forms.Select(attrs={'class': 'form-control'}),
             'price': PriceMaskWidget(),
-            'text': forms.TextInput(attrs={'class': 'form-control'}),
+            'text': Textarea(attrs={'class': 'form-control'}),
         }
