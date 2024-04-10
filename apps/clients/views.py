@@ -18,5 +18,24 @@ def client_register(request):
     return render(request, 'clients/client_register.html', {'form': form})
 
 def client_list(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    
     clients = models.Client_Register.objects.all()
     return render(request, 'clients/client_list.html', {'clients': clients})
+
+def client_edit(request, id_client):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    
+    clients = models.Client_Register.objects.get(id=id_client)
+    form = forms.ClientRegisterForms(instance=clients)
+
+    if request.method == 'POST':
+        form = forms.ClientRegisterForms(request.POST, instance=clients)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Cliente alterado com sucesso!')
+            return redirect('client_list')
+        
+    return render(request, 'clients/client_edit.html', {'form': form, 'id_client': id_client})

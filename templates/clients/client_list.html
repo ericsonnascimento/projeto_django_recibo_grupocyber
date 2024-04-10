@@ -25,8 +25,8 @@
                         <td>{{ client.name }}</td>
                         <td>{{ client.phone }}</td>
                         <td>{{ client.email }}</td>
-                        <td><a href="#"><button type="submit" class="btn btn-primary">Editar</button></a></td>
-                        <td><a href="#"><button type="submit" class="btn btn-danger">Deletar</button></a></td>
+                        <td><a href="{% url 'client_edit' client.id %}"><button type="submit" class="btn btn-primary">Editar</button></a></td>
+                        <td><a href="#"><button type="submit" class="btn btn-danger">Excluir</button></a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
