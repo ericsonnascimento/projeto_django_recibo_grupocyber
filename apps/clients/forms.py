@@ -43,3 +43,9 @@ class ClientRegisterForms(forms.ModelForm):
                 'class': 'form-control',
                 'placeholder': 'Ex.: severinosilva@gmail.com'}),
         }
+
+    def clean_name(self):
+        name = self.cleaned_data.get('name')
+        if name:
+            return name.upper()
+        return name

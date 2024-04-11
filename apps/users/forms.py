@@ -1,4 +1,5 @@
 from django import forms
+import re
 
 class LoginForms(forms.Form):
     login_name = forms.CharField(
@@ -89,8 +90,20 @@ class UserRegistrationForm(forms.Form):
         if len(senha_1) < 8:
             raise forms.ValidationError('Senha deve contar pelo menos 8 caracteres')
         
+        if not re.search("[A-Z]", senha_1):
+            raise forms.ValidationError('A senha deve conter pelo menos uma letra maiúscula')
+
+        if not re.search("[a-z]", senha_1):
+            raise forms.ValidationError('A senha deve conter pelo menos uma letra minúscula')
+
+        if not re.search("[0-9]", senha_1):
+            raise forms.ValidationError('A senha deve conter pelo menos um número')
+
+        if not re.search("[@#$%^&+=]", senha_1):
+            raise forms.ValidationError('A senha deve conter pelo menos um caractere especial')
+        
         if senha_1 and senha_2 and senha_1 != senha_2:
-            raise forms.ValidationError('Senhas digitadas não são iguais!')
+            raise forms.ValidationError('Senhas digitadas não são iguais!')  
         
         return cleaned_data
 

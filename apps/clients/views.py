@@ -39,3 +39,4 @@ def client_edit(request, id_client):
             return redirect('client_list')
         
     return render(request, 'clients/client_edit.html', {'form': form, 'id_client': id_client})
+    

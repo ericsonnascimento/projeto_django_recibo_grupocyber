@@ -19,8 +19,25 @@
                 <div class="alert alert-danger ml-3">{{ error }}</div>
             {% endfor %}
         </div>
+        <div style="color: #2e2e2e;">
+            <p>
+                Os campos relacionados a senha devem conter:
+            </p>
+            <li>
+                Pelo menos uma letra maiúscula
+            </li>
+            <li>
+                Pelo menos uma letra minúscula
+            </li>
+            <li>    
+                Pelo menos um caractere especial
+            </li>
+            <li>    
+                Pelo menos um número
+            </li>
+        </div>
         <div class="text-center">
-            <button class="btn btn-success col-6 mt-3" type="submit">Cadastrar</button>
+            <button class="btn btn-success col-6 mt-3 mb-3" type="submit">Cadastrar</button>
         </div>
     </form>
 </section>

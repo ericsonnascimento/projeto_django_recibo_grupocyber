@@ -39,3 +39,9 @@ class ReceiptsForms(forms.ModelForm):
             'price': PriceMaskWidget(),
             'text': Textarea(attrs={'class': 'form-control'}),
         }
+    
+    def clean_text(self):
+        text = self.cleaned_data.get('text')
+        if text:
+            return text.upper()
+        return text
