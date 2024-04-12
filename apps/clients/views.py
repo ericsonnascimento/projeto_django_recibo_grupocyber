@@ -39,4 +39,14 @@ def client_edit(request, id_client):
             return redirect('client_list')
         
     return render(request, 'clients/client_edit.html', {'form': form, 'id_client': id_client})
+
+def client_delete(request, id_client):
+    if not request.user.is_authenticated:
+            return redirect('login')
+
+    id_client = models.Client_Register.objects.get(id=id_client)
+    id_client.delete()
+    messages.success(request, 'Deleção realizada com sucesso!')
+
+    return redirect('client_list')
     
