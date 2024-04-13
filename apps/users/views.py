@@ -42,7 +42,6 @@ def cadastro_acesso(request):
             name_registration = form['name_registration'].value()
             login_registration = form['login_registration'].value()
             password_registration = form['password'].value()
-            password_repeat = form['password_repeat'].value()
         
             if User.objects.filter(username=login_registration).exists():
                 messages.error(request, f'Usuário "{login_registration}" já existe, tente um novo usuário!')
@@ -54,12 +53,18 @@ def cadastro_acesso(request):
                 password=password_registration
             )
             messages.success(request, 'Usuário cadastrado com sucesso!')
-            return redirect('index')
+            return redirect('user_list')
             
     return render(request, 'users/cadastro_acesso.html', {'form': form})
-
 
 def logout(request):
     auth.logout(request)
     messages.success(request, 'Volte sempre!')
     return redirect('login')
+
+def user_list(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+
+    users = User.objects.all()
+    return render(request, 'users/user_list.html', {'users': users})
