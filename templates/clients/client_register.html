@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+{% include 'partials/_subnavbar_clients.html' %}
 
 <section class="container">
     <form action="{% url 'client_register' %}" method="POST" class="position-absolute top-50 start-50 translate-middle mr-3">
