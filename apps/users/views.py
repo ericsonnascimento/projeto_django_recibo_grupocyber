@@ -29,7 +29,7 @@ def login(request):
     return render(request, 'users/login.html', {'form': form})
 
 
-def cadastro_acesso(request):
+def user_register(request):
     if not request.user.is_authenticated:
         return redirect('login')
 
@@ -45,7 +45,7 @@ def cadastro_acesso(request):
         
             if User.objects.filter(username=login_registration).exists():
                 messages.error(request, f'Usuário "{login_registration}" já existe, tente um novo usuário!')
-                return redirect('cadastro_acesso')
+                return redirect('user_register')
             
             user = User.objects.create_user(
                 username=login_registration,
@@ -55,7 +55,7 @@ def cadastro_acesso(request):
             messages.success(request, 'Usuário cadastrado com sucesso!')
             return redirect('user_list')
             
-    return render(request, 'users/cadastro_acesso.html', {'form': form})
+    return render(request, 'users/user_register.html', {'form': form})
 
 def logout(request):
     auth.logout(request)
@@ -68,3 +68,19 @@ def user_list(request):
 
     users = User.objects.all()
     return render(request, 'users/user_list.html', {'users': users})
+
+def user_edit(request, id_user):
+
+    users = User.objects.get(id=id_user)
+    form = forms.UserRegistrationForm()
+
+    if request.method == 'POST':
+        form = forms.UserRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+    return render(request, 'users/user_edit.html', {'form': form, 'id_user': id_user})
+    
+
+def user_delete(reques, id_client):
+    pass

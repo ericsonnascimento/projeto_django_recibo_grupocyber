@@ -76,34 +76,28 @@ class UserRegistrationForm(forms.Form):
         )
     )
 
-    def clean(self):
-        cleaned_data = super().clean()
-        login_user = cleaned_data.get('login_registration')
-        senha_1 = cleaned_data.get('password')
-        senha_2 = cleaned_data.get('password_repeat')
-
+    def clean_login_registration(self):
+        login_user = self.cleaned_data.get('login_registration')
         if login_user:
             login_user = login_user.strip()
             if ' ' in login_user:
                 raise forms.ValidationError('Não é permitido espaços no campo "Login"')
+        return login_user
 
-        if len(senha_1) < 8:
-            raise forms.ValidationError('Senha deve contar pelo menos 8 caracteres')
-        
-        if not re.search("[A-Z]", senha_1):
+    def clean_password(self):
+        password = self.cleaned_data.get('password')
+        password_repeat = self.cleaned_data.get('password_repeat')
+
+        if password != password_repeat:
+            raise forms.ValidationError('Senha digitada no campo "Senha" e "Repita a senha" são diferentes!')
+        if len(password) < 8:
+            raise forms.ValidationError('Senha deve conter pelo menos 8 caracteres')
+        if not re.search("[A-Z]", password):
             raise forms.ValidationError('A senha deve conter pelo menos uma letra maiúscula')
-
-        if not re.search("[a-z]", senha_1):
+        if not re.search("[a-z]", password):
             raise forms.ValidationError('A senha deve conter pelo menos uma letra minúscula')
-
-        if not re.search("[0-9]", senha_1):
+        if not re.search("[0-9]", password):
             raise forms.ValidationError('A senha deve conter pelo menos um número')
-
-        if not re.search("[@#$%^&+=]", senha_1):
+        if not re.search("[@#$%^&+=]", password):
             raise forms.ValidationError('A senha deve conter pelo menos um caractere especial')
-        
-        if senha_1 and senha_2 and senha_1 != senha_2:
-            raise forms.ValidationError('Senhas digitadas não são iguais!')  
-        
-        return cleaned_data
-
+        return password

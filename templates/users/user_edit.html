@@ -1,0 +1,12 @@
+
+
+<section>
+    <form action="{% url 'user_edit' id_user %}" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+        <div>
+            {{ field }}
+        </div>
+        {% endfor %}
+    </form>
+</section>
