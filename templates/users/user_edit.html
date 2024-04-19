@@ -1,12 +1,28 @@
+{% extends 'shared/base.html' %}
+{% load static %}
 
+{% block content %}
+{% include 'partials/_subnavbar_users.html' %}
 
-<section>
-    <form action="{% url 'user_edit' id_user %}" method="POST">
+<section class="container d-flex justify-content-center align-items-center">
+    <form action="{% url 'user_edit' id_user %}" method="POST" class="mr-3">
         {% csrf_token %}
-        {% for field in form %}
-        <div>
-            {{ field }}
+        <h5 class="text-center mb-3 mt-5">EDITAR USUÁRIO</h5>
+        <div class="row">
+            {% for field in form %}
+            <div class="col-12 col-lg-12 mb-3">
+                <label style="color:#a5a3a3;">{{ field.label }}</label>
+                {{ field }}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger mt-2">{{ error }}</div>
+                {% endfor %}
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+        <div class="text-center">
+            <button class="btn btn-success col-6 mt-3 mb-3" type="submit">Salvar</button>
+        </div>
     </form>
 </section>
+
+{% endblock %}

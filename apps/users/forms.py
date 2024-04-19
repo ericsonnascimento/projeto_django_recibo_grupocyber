@@ -26,6 +26,40 @@ class LoginForms(forms.Form):
         )
     )
 
+class UserEditForm(forms.Form):
+    name_registration = forms.CharField(
+        label='Nome',
+        required=True,
+        max_length=100,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Digite o nome completo'
+            }
+        )
+    )
+
+    login_registration = forms.CharField(
+        label='Login',
+        required=True,
+        max_length=100,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Ex.: joaosilva'
+            }
+        )
+    )
+
+    def clean_login_registration(self):
+        login_user = self.cleaned_data.get('login_registration')
+
+        if login_user:
+            login_user = login_user.strip()
+            if ' ' in login_user:
+                raise forms.ValidationError('Não é permitido espaços no campo "Login"') 
+                
+        return login_user
 
 class UserRegistrationForm(forms.Form):
     name_registration = forms.CharField(

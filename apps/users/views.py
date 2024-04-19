@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
 from . import forms
@@ -70,17 +70,28 @@ def user_list(request):
     return render(request, 'users/user_list.html', {'users': users})
 
 def user_edit(request, id_user):
+    if not request.user.is_authenticated:
+        return redirect('login')
 
-    users = User.objects.get(id=id_user)
-    form = forms.UserRegistrationForm()
+    user_instance = get_object_or_404(User, id=id_user)
 
     if request.method == 'POST':
-        form = forms.UserRegistrationForm(request.POST)
+        form = forms.UserEditForm(request.POST)
         if form.is_valid():
-            form.save()
+            user_instance.first_name = form.cleaned_data['name_registration']
+            user_instance.username = form.cleaned_data['login_registration']
+            user_instance.save()
+            messages.success(request, 'Usuário alterado com sucesso!')
+            return redirect('user_list')
+    else:
+        form = forms.UserEditForm(initial={
+            'name_registration': user_instance.first_name,
+            'login_registration': user_instance.username,
+        })
 
     return render(request, 'users/user_edit.html', {'form': form, 'id_user': id_user})
     
 
 def user_delete(reques, id_client):
     pass
+
