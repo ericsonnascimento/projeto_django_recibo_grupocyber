@@ -120,10 +120,7 @@ class UserRegistrationForm(forms.Form):
 
     def clean_password(self):
         password = self.cleaned_data.get('password')
-        password_repeat = self.cleaned_data.get('password_repeat')
-
-        if password != password_repeat:
-            raise forms.ValidationError('Senha digitada no campo "Senha" e "Repita a senha" são diferentes!')
+        
         if len(password) < 8:
             raise forms.ValidationError('Senha deve conter pelo menos 8 caracteres')
         if not re.search("[A-Z]", password):
@@ -135,3 +132,13 @@ class UserRegistrationForm(forms.Form):
         if not re.search("[@#$%^&+=]", password):
             raise forms.ValidationError('A senha deve conter pelo menos um caractere especial')
         return password
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get('password')
+        password_repeat = cleaned_data.get('password_repeat')
+
+        if password and password_repeat and password != password_repeat:
+            raise forms.ValidationError('As senhas digitadas não são iguais!')
+
+        return cleaned_data
