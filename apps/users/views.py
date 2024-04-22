@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
 from django.contrib import auth, messages
 from . import forms
 
@@ -45,15 +46,15 @@ def user_register(request):
         
             if User.objects.filter(username=login_registration).exists():
                 messages.error(request, f'Usuário "{login_registration}" já existe, tente um novo usuário!')
-                return redirect('user_register')
             
-            user = User.objects.create_user(
-                username=login_registration,
-                first_name=name_registration,
-                password=password_registration
-            )
-            messages.success(request, 'Usuário cadastrado com sucesso!')
-            return redirect('user_list')
+            else:
+                user = User.objects.create_user(
+                    username=login_registration,
+                    first_name=name_registration,
+                    password=password_registration
+                )
+                messages.success(request, 'Usuário cadastrado com sucesso!')
+                return redirect('user_list')
             
     return render(request, 'users/user_register.html', {'form': form})
 
@@ -90,8 +91,38 @@ def user_edit(request, id_user):
         })
 
     return render(request, 'users/user_edit.html', {'form': form, 'id_user': id_user})
-    
 
-def user_delete(reques, id_client):
+def user_edit_password(request, id_user):
+    if not request.user.is_authenticated:
+        return redirect('login')
+
+    user_instance = get_object_or_404(User, id=id_user)
+    form = forms.UserEdidPasswordForm()
+
+    if request.method == 'POST':
+        form = forms.UserEdidPasswordForm(request.POST)   
+        if form.is_valid():
+            new_password = form.cleaned_data['password']
+            user_instance.password = make_password(new_password)
+            user_instance.save()
+            messages.success(request, 'Senha alterada com sucesso!')
+            return redirect('user_list')
+
+    return render(request, 'users/user_edit_password.html', {'form': form, 'id_user': id_user})
+ 
+
+def user_delete(request, id_user):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    
+    if request.method == 'POST':
+        user_instance = get_object_or_404(User, id=id_user)
+        user_instance.delete()
+        messages.success(request, 'Usuário excluido com sucesso!')
+        return redirect('user_list')
+    
+    return render(request, 'users/user_delete.html', {'id_user': id_user})
+
+    
     pass
 

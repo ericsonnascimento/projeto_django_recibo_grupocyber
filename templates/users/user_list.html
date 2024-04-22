@@ -24,7 +24,8 @@
                         <td>{{ user_list.first_name }}</td>
                         <td>{{ user_list.username }}</td>
                         <td><a href="{% url 'user_edit' user_list.id %}"><button type="submit" class="btn btn-primary">Editar</button></a></td>
-                        <td><a href="#"><button type="submit" class="btn btn-danger">Excluir</button></a></td>
+                        <td><a href="{% url 'user_edit_password' user_list.id %}"><button type="submit" class="btn btn-primary">Editar Senha</button></a></td>
+                        <td><a href="{% url 'user_delete' user_list.id %}"><button type="submit" class="btn btn-danger">Excluir</button></a></td>
                     </tr>
                     {% endfor %}
                 </thead>

@@ -1,1 +1,21 @@
-<h2>Deletar Cliente</h2>
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'partials/_subnavbar_clients.html' %}
+
+<section class="container d-flex justify-content-center align-items-center">
+    <h6 class="pb-5 mt-5">DESEJA REALMENTE EXCLUIR ESTE CLIENTE?</h1>
+    <form method="POST" class="position-absolute top-50 start-50 translate-middle pt-5 mt-5 pr-5 mr-5">
+        {% csrf_token %}
+        <div class="text-center">
+            <button type="submit" class="btn btn-success mr-2">Sim</button>
+        </div>
+    </form>
+    <div class="position-absolute top-50 start-50 translate-middle pt-5 mt-5 ml-5">
+        <a href="{% url 'user_list' %}"><button type="submit" class="btn btn-danger">Não</button></a>
+    </div>
+    
+</section>
+
+{% endblock %}
