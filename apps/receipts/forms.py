@@ -24,7 +24,7 @@ class PriceMaskWidget(TextInput):
             """ % name
         )
 
-class ReceiptsForms(forms.ModelForm):
+class ReceiptsRegisterForms(forms.ModelForm):
     class Meta:
         model = models.Receipts
         exclude = ['user']

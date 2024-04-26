@@ -6,7 +6,7 @@
 {% include 'partials/_subnavbar_receipts.html' %}
 
 <section class="container d-flex justify-content-center align-items-center">
-    <form action="{% url 'receipts' %}" method="POST" class="mr-3">
+    <form action="{% url 'receipts_register' %}" method="POST" class="mr-3">
         {% csrf_token %}
         <h5 class="text-center mb-3 mt-5">CADASTRAR RECIBO</h5>
         <div class="row">
