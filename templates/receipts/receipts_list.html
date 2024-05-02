@@ -25,8 +25,8 @@
                         <td>{{ receipt.client }}</td>
                         <td>{{ receipt.price }}</td>
                         <td>{{ receipt.date_register|date:'d/m/Y' }}</td>
-                        <td><a href="#"><button type="submit" class="btn btn-primary">Editar</button></a></td>
-                        <td><a href="#"><button type="submit" class="btn btn-danger">Excluir</button></a></td>
+                        <td><a href="{% url 'receipts_edit' receipt.id %}"><button type="submit" class="btn btn-primary">Editar</button></a></td>
+                        <td><a href="{% url 'receipts_delete' receipt.id %}"><button type="submit" class="btn btn-danger">Excluir</button></a></td>
                     </tr>
                     {% endfor %}
                 </tbody>

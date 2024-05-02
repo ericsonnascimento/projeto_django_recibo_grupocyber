@@ -25,6 +25,33 @@ def receipts_list(request):
     receipts_instance = models.Receipts.objects.all()
     return render(request, 'receipts/receipts_list.html', {'receipts_instance': receipts_instance})
 
+def receipts_edit(request, id_receipt):
+    if not request.user.is_authenticated:
+        return redirect('login')
+
+    receipt_instance = models.Receipts.objects.get(id=id_receipt)
+    form = forms.ReceiptsRegisterForms(instance=receipt_instance)
+
+    if request.method == 'POST':
+        form = forms.ReceiptsRegisterForms(request.POST, instance=receipt_instance)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Recibo alterado com sucesso!')
+            return redirect('receipts_list')
+
+    return render(request, 'receipts/receipts_edit.html', {'form':form, 'id_receipt':id_receipt})
+
+def receipts_delete(request, id_receipt):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    
+    if request.method == 'POST':
+        receipt_instance = models.Receipts.objects.get(id=id_receipt)
+        receipt_instance.delete()
+        messages.success(request, 'Recibo excluído com sucesso!')
+        return redirect('receipts_list')
+
+    return render(request, 'receipts/receipts_delete.html', {'id_receipt':id_receipt})
 
 def index(request):
     if not request.user.is_authenticated:
