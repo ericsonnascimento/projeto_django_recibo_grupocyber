@@ -2,8 +2,9 @@
 {% load static %}
 {% block content %}
 
-    <div>
-        <h1>Pagina Index - Dashboard</h1>
-    </div>
+<h5 class="text-center mb-3 mt-5">Dashboard de Gastos dos Clientes</h5>
+    <section class="container d-flex justify-content-center align-items-center">
+        <div id="clientsChart">{{ graph_div|safe }}</div>
+    </section>
 
 {% endblock %}

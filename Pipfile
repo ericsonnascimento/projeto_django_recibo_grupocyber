@@ -5,6 +5,8 @@ name = "pypi"
 
 [packages]
 python-dotenv = "*"
+plotly = "*"
+pandas = "*"
 
 [dev-packages]
 
