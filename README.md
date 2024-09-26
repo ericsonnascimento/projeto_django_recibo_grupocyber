@@ -1,6 +1,6 @@
 # Projeto Django: Recibo GrupoCyber
 
-*Breve Resumo:
+* Breve Resumo:
 
 Projeto de geração de recibo para empresa Grupocyber com funcionalidades CRUD de gerenciamento de cliente, gerenciamento de usuário do sistema, gerenciamento de recibo, persistencia de dados em banco de dados, deshboard iterando com os dados coletados e relatório demostrativo de clientes, recibos e usuários do sistema.
 
