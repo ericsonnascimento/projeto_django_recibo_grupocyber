@@ -50,3 +50,19 @@ Dashboard com gráfico simples
 * Conclusão
 
 Com a comclusão do projeto, concegui observar que sempre temos o que aprender nesta área tão apaixonante, provavelmente meus próximos passos serão ampliar cada vez mais as funcionalidades deste projeto.
+
+# De desenvolvedor para desenvolvedor:
+
+1. Primeiro passo é criar um ambiente virtual do tipo venv:
+
+   `python -m venv venv`
+   
+2. Vamos ativar o ambiente e instalar as dependências (estou utilizando o windows):
+
+   `.\venv\Scripts\activate`
+   `pip install -r .\requeriments.txt`
+
+   Caso ocorra algum erro na instalação, abra o requirements.txt e instale manualmente cada uma das bibliotecas:
+   Django, Python-dotenv, Pandas, Plotly, Numpy
+   
+3. Terceiro
