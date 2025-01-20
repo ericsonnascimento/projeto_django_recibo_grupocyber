@@ -65,4 +65,23 @@ Com a comclusão do projeto, concegui observar que sempre temos o que aprender n
    Caso ocorra algum erro na instalação, abra o requirements.txt e instale manualmente cada uma das bibliotecas:
    Django, Python-dotenv, Pandas, Plotly, Numpy
    
-3. Terceiro
+3. Terceiro, basta rodar o comand `runserver` para que o banco de dados sqlite seja criado, não esqueça de para o servidor com ctrl+c que possibilitará rodar os comandos logo a baixo:
+   
+   `python .\manage.py runserver`
+
+4. Em seguida vamos popular o DB rodando o comando:
+   
+   `python .\manage.py migrate`
+   
+6. Feito isso podemos criar o usuário admin:
+
+   `python manage.py createsuperuser`
+
+7. Precisamos agora gerar um arquivo .env onde são guardados os dados sensiveis do projeto.
+
+   * Estou guardando nesse arquivo a variável SECRET_KEY = 'sequencia_de_numeros_e_letras'
+
+8. 
+
+   
+ 
