@@ -81,7 +81,12 @@ Com a comclusão do projeto, concegui observar que sempre temos o que aprender n
 
    * Estou guardando nesse arquivo a variável SECRET_KEY = 'sequencia_de_numeros_e_letras'
 
-8. 
+8. Para que o *Dashboard* não aprente error ao abrir pela primeira vez, vamos adicionar algumas informações através do /admin:
+
+   `python .\manage.py runserver`
+   http://127.0.0.1:8000/admin (logue com a conta criada superuse e insira um cliente e um recibo)
+
+9. Agora podemos ir para http://127.0.0.1:8000, logar com a conta e em seguida seremos redirecionados para o *Dashboard*.
 
    
  
