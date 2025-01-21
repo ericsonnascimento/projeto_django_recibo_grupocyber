@@ -23,7 +23,7 @@ def login(request):
         if usuario is not None:
             auth.login(request, usuario)
             messages.success(request, f'Bem vindo {usuario}, credenciais aceitas com sucesso!')
-            return redirect('index')
+            return redirect('dashboard')
         else:
             messages.error(request, 'Usuário ou senha inválidos')
 
