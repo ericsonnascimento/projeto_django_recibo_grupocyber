@@ -29,7 +29,8 @@ Gerenciando Recibos
 ![image](https://github.com/user-attachments/assets/b7c341a4-3ff6-4b82-a340-1b0381e11a54)
 
 Dashboard com gráfico simples
-![Screenshot from 2024-07-15 08-28-07](https://github.com/user-attachments/assets/76c77b59-7b87-4bf9-985a-9e27988dba59)
+![dashboard](https://github.com/user-attachments/assets/d65bb132-0753-41a2-ae77-df3914bc06b2)
+
 
 * Tecnologias utilizadas
 
