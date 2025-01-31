@@ -22,8 +22,16 @@ def dashboard(request):
     summary_df = receipts_df.groupby('client__name').agg({'price': 'sum'}).reset_index()
     summary_df.columns = ['Cliente', 'Total Gasto']
 
-    # Criar gráfico interativo usando Plotly
-    fig = px.bar(summary_df, x='Cliente', y='Total Gasto', title='Total Gasto por Cliente')
-    graph_div = pio.to_html(fig, full_html=False)
+    # Criar gráfico interativo 01 usando Plotly
+    fig1 = px.bar(summary_df, x='Cliente', y='Total Gasto', title='Exemplo Gasto por Cliente')
+    graph_div1 = pio.to_html(fig1, full_html=False, config={'displayModeBar': False})
 
-    return render(request, 'dashboard/dashboard.html', {'graph_div': graph_div})
+    # Criar gráfico interativo 02 usando Plotly
+    fig2 = px.bar(summary_df, x='Cliente', y='Total Gasto', title='Exemplo Gasto por Recibo')
+    graph_div2 = pio.to_html(fig2, full_html=False, config={'displayModeBar': False})
+
+    # Criar gráfico interativo 03 usando Plotly
+    fig3 = px.bar(summary_df, x='Cliente', y='Total Gasto', title='Exemplo Lucratividade por Recibo')
+    graph_div3 = pio.to_html(fig3, full_html=False, config={'displayModeBar': False})
+    
+    return render(request, 'dashboard/dashboard.html', {'graph_div1': graph_div1, 'graph_div2': graph_div2, 'graph_div3': graph_div3})

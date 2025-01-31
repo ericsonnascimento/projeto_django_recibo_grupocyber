@@ -1,0 +1,29 @@
+.dashboard_tittle {
+    font-size: 1.8rem;
+    text-align: center;
+    font-weight: 500;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard_grafics {
+    padding-top: 2rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 2rem;
+    height: 100%;
+    width: 100%;
+}
+
+.dashboard_grafics1 {
+    width: 30%;
+    height: 100%;
+    background-color: #f5f5f5;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+

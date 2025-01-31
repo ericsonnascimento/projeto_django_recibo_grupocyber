@@ -2,9 +2,12 @@
 {% load static %}
 {% block content %}
 
-<h5 class="text-center mb-3 mt-5">Dashboard de Gastos dos Clientes</h5>
-    <section class="container d-flex justify-content-center align-items-center">
-        <div id="clientsChart">{{ graph_div|safe }}</div>
-    </section>
+<h5 class="dashboard_tittle">Dashboard de Gastos dos Clientes</h5>
+
+<section class="dashboard_grafics">
+    <div class="dashboard_grafics1">{{ graph_div1|safe }}</div>
+    <div class="dashboard_grafics1">{{ graph_div2|safe }}</div>
+    <div class="dashboard_grafics1">{{ graph_div3|safe }}</div>
+</section>
 
 {% endblock %}
